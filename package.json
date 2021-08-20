@@ -10,6 +10,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^3",
+    "node-fetch": "^2.6.1",
     "pacote": "^11.3.5",
     "tslib": "^1"
   },
@@ -47,7 +48,7 @@
   },
   "repository": "chenbojian/fetch-dependencies",
   "scripts": {
-    "posttest": "eslint . --ext .ts --config .eslintrc",
+    "posttest": "eslint . --ext .ts --config .eslintrc --fix",
     "prepack": "rm -rf lib && tsc -b && oclif-dev readme",
     "test": "nyc --extension .ts mocha --forbid-only \"test/**/*.test.ts\"",
     "version": "oclif-dev readme && git add README.md"
