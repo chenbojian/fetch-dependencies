@@ -1,4 +1,5 @@
 import {Command, flags} from '@oclif/command'
+import {getPackageFiles} from './github'
 
 class FetchDependencies extends Command {
   static description = 'describe the command here'
@@ -23,6 +24,11 @@ class FetchDependencies extends Command {
     if (args.file && flags.force) {
       this.log(`you input --force and --file: ${args.file}`)
     }
+
+    // const packageFiles = await getPackageFiles('facebook/react')
+    // const packageFiles = await getPackageFiles('JamesNK/Newtonsoft.Json', '2039a29')
+    const packageFiles = await getPackageFiles('JamesNK/Newtonsoft.Json', 'master')
+    console.log(packageFiles)
   }
 }
 
