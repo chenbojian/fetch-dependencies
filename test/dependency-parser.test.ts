@@ -56,6 +56,16 @@ describe('dependency parser', function () {
     expect(deps).to.have.property('FSharp.Core', '4.0.0')
   })
 
+  it('parse nuget packages.config dependency with nothing', async function () {
+    const content = `
+    ï»¿<?xml version="1.0" encoding="utf-8"?>
+    <packages>
+    </packages>
+    `
+    const deps = parseDependency('packages.config', content)
+    expect(deps).to.be.empty
+  })
+
   it('parse .csproj dependency', async function () {
     const content = `
 <Project Sdk="Microsoft.NET.Sdk.Web">
@@ -86,4 +96,27 @@ describe('dependency parser', function () {
     expect(deps).to.have.property('NLog', '4.6.8')
   })
 
+  it('parse .csproj dependency with nothing', async function () {
+    const content = `
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <NoWarn>1701;1702;CS1573;CS1591;</NoWarn>
+    <IsPackable>true</IsPackable>
+    <ProjectGuid>{D25D9224-031F-4E53-B898-E962735C862A}</ProjectGuid>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Service</PackageId>
+    <PackageVersion>1.0.0.0</PackageVersion>
+    <Title>Service</Title>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Copyright>Copyright 2018</Copyright>
+  </PropertyGroup>
+
+</Project>
+    `
+    const deps = parseDependency('service.csproj', content)
+    expect(deps).to.be.empty
+  })
 })

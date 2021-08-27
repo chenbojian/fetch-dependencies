@@ -1,5 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import {getPackageFiles} from './github'
+import {parseDependency} from './dependency-parser'
 
 class FetchDependencies extends Command {
   static description = 'describe the command here'
@@ -28,7 +29,8 @@ class FetchDependencies extends Command {
     // const packageFiles = await getPackageFiles('facebook/react')
     // const packageFiles = await getPackageFiles('JamesNK/Newtonsoft.Json', '2039a29')
     const packageFiles = await getPackageFiles('JamesNK/Newtonsoft.Json', 'master')
-    console.log(packageFiles)
+    const dependencies = Object.keys(packageFiles).map(path => parseDependency(path, packageFiles[path]))
+    console.log(dependencies)
   }
 }
 

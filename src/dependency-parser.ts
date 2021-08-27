@@ -14,7 +14,7 @@ export function parseDependency(path: string, content: string): { [id: string]: 
     const elements = DomUtils.findAll(e => e.tagName === 'package', dom.childNodes)
 
     const dependencies = elements.map(e => ({[e.attribs.id]: e.attribs.version}))
-    return dependencies.reduce((prev, cur) => ({...prev, ...cur}))
+    return dependencies.reduce((prev, cur) => ({...prev, ...cur}), {})
   }
 
   if (/\.csproj/.test(path)) {
@@ -22,7 +22,7 @@ export function parseDependency(path: string, content: string): { [id: string]: 
     const elements = DomUtils.findAll(e => e.tagName === 'packagereference', dom.childNodes)
 
     const dependencies = elements.map(e => ({[e.attribs.include]: e.attribs.version}))
-    return dependencies.reduce((prev, cur) => ({...prev, ...cur}))
+    return dependencies.reduce((prev, cur) => ({...prev, ...cur}), {})
   }
 
   throw new Error('invalid arguments')
