@@ -1,0 +1,10 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: fetch-dependencies
+  annotations:
+    github.com/project-slug: chenbojian/fetch-dependencies
+spec:
+  type: other
+  lifecycle: unknown
+  owner: guests
