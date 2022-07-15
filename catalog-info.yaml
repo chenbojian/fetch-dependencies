@@ -4,7 +4,6 @@ metadata:
   name: fetch-dependencies
   annotations:
     github.com/project-slug: chenbojian/fetch-dependencies
-    backstage.io/techdocs-ref: dir:.
 spec:
   type: other
   lifecycle: unknown
